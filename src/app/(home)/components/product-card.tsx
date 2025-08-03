@@ -21,6 +21,7 @@ import { Label } from "@/components/ui/label";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import ToppingList from "./topping-list";
+import { ShoppingCart } from "lucide-react";
 
 export type Product = {
   id: string;
@@ -156,6 +157,14 @@ const ProductCard = ({ product }: PropTypes) => {
                 </div>
 
                 <ToppingList />
+
+                <div className="flex items-center justify-between mt-12">
+                  <span className="font-bold">Rs.400</span>
+                  <Button>
+                    <ShoppingCart size={20} />
+                    <span className="ml-2">Add to cart</span>
+                  </Button>
+                </div>
               </div>
             </div>
           </DialogContent>
