@@ -4,3 +4,21 @@ export interface Tenant {
   address: string;
   updatedAt: string;
 }
+export interface Attribute {
+  name: string;
+  widgetType: "switch" | "radio";
+  defaultValue: string;
+  availableOptions: string[];
+}
+export interface PriceConfiguration {
+  [key: string]: {
+    price: "base" | "additional";
+    availableOptions: string[];
+  };
+}
+export interface Category {
+  _id: string;
+  name: string;
+  priceConfiguration: PriceConfiguration;
+  attributes: Attribute[];
+}
