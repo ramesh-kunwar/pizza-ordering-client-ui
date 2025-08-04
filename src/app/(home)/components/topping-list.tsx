@@ -51,23 +51,6 @@ const ToppingList = ({
     fetchData();
   }, []);
 
-  // const [selectedToppings, setSelectedToppings] = React.useState<Topping[]>([]);
-
-  // const handleCheckBoxCheck = (topping: Topping) => {
-  //   const isAlreadyExists = selectedToppings.some(
-  //     (element: Topping) => element.id === topping.id
-  //   );
-
-  //   if (isAlreadyExists) {
-  //     setSelectedToppings((prev) =>
-  //       prev.filter((elm: Topping) => elm.id !== topping.id)
-  //     );
-  //     return;
-  //   }
-
-  //   setSelectedToppings((prev: Topping[]) => [...prev, topping]);
-  // };
-
   if (loading) {
     return (
       <section className="mt-6">
