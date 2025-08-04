@@ -2,37 +2,20 @@ import Image from "next/image";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import ToppingList from "./topping-list";
 import { ShoppingCart } from "lucide-react";
+import { Product } from "@/lib/types";
 
-export type Product = {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-};
-type PropTypes = { product: Product };
-
-const ProductCard = ({ product }: PropTypes) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className="border-none rounded-xl">
       <CardHeader className="flex items-center justify-center">
