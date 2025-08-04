@@ -5,15 +5,9 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import ToppingList from "./topping-list";
-import { ShoppingCart } from "lucide-react";
 import { Product } from "@/lib/types";
+import ProductModal from "./product-modal";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -30,7 +24,10 @@ const ProductCard = ({ product }: { product: Product }) => {
           <span>From </span>
           <span className="font-bold">Rs.{100}</span>
         </p>
-        <Dialog>
+
+        <ProductModal product={product} />
+
+        {/* <Dialog>
           <DialogTrigger className="bg-orange-200 hover:bg-orange-300 text-orange-500 px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150">
             Choose
           </DialogTrigger>
@@ -151,7 +148,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               </div>
             </div>
           </DialogContent>
-        </Dialog>
+        </Dialog> */}
       </CardFooter>
     </Card>
   );
