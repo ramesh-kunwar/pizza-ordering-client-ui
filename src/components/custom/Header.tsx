@@ -25,8 +25,6 @@ const Header = async () => {
 
   const restaurants: { data: Tenant[] } = await tenantsResponse.json();
 
-  console.log(restaurants, " restaurants");
-
   return (
     <header className="bg-white">
       <nav className="container py-5 flex items-center justify-between mx-auto">

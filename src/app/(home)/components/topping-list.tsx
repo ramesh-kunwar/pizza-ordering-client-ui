@@ -40,7 +40,6 @@ const ToppingList = () => {
       return;
     }
     setSelectedToppings((prev) => [...prev, topping]);
-    console.log("Selected Toppings: ", selectedToppings);
   };
 
   return (
