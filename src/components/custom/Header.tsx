@@ -11,6 +11,11 @@ import { Phone, ShoppingBasket } from "lucide-react";
 import { Button } from "../ui/button";
 import { Tenant } from "@/lib/types";
 import CartCounter from "./cart-couter";
+import dynamic from "next/dynamic";
+
+const CartCounterWithoutSSR = dynamic(() => import("./cart-couter"), {
+  ssr: false,
+});
 
 const Header = async () => {
   const tenantsResponse = await fetch(
@@ -79,7 +84,7 @@ const Header = async () => {
               </Link>
             </li>
           </ul>
-          <CartCounter />
+          <CartCounterWithoutSSR />
           <div className="flex items-center ml-12">
             <Phone />
             <span>+977 9800 098 998</span>
