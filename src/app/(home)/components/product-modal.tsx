@@ -150,10 +150,12 @@ const ProductModal = ({ product }: { product: Product }) => {
               }
             )}
 
-            <ToppingList
-              selectedToppings={selectedToppings}
-              handleCheckBoxCheck={handleCheckBoxCheck}
-            />
+            {product.category.name === "Pizza" && (
+              <ToppingList
+                selectedToppings={selectedToppings}
+                handleCheckBoxCheck={handleCheckBoxCheck}
+              />
+            )}
 
             <div className="flex items-center justify-between mt-12">
               <span className="font-bold">Rs. {totalPrice} </span>
