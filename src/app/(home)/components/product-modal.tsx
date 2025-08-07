@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import { ShoppingCart } from "lucide-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ToppingList from "./topping-list";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Product, Topping } from "@/lib/types";
@@ -31,13 +31,31 @@ const ProductModal = ({ product }: { product: Product }) => {
       return { ...acc, ...curr };
     }, {});
 
-  console.log(defaultConfiguration);
-
   const [chosenConfig, setChosenConfig] = useState<ChosenConfig>(
     defaultConfiguration as unknown as ChosenConfig
   );
 
   const [selectedToppings, setSelectedToppings] = React.useState<Topping[]>([]);
+
+  const totalPrice = useMemo(() => {
+    const toppingsTotal = selectedToppings.reduce(
+      (acc, topping) => acc + topping.price,
+      0
+    );
+
+    const configPricing = Object.entries(chosenConfig).reduce(
+      (acc, [key, value]) => {
+        const priceConfig = product.priceConfiguration[key];
+        if (priceConfig && priceConfig.availableOptions[value] !== undefined) {
+          return acc + priceConfig.availableOptions[value];
+        }
+        return acc;
+      },
+      0
+    );
+
+    return configPricing + toppingsTotal;
+  }, [chosenConfig, selectedToppings, product]);
 
   const handleCheckBoxCheck = (topping: Topping) => {
     const isAlreadyExists = selectedToppings.some(
@@ -55,7 +73,6 @@ const ProductModal = ({ product }: { product: Product }) => {
   };
   const handleAddToCart = (product: Product) => {
     // todo: add to cart logic
-    // console.log("adding to the cart....");
     const itemToAdd = {
       product,
       chosenConfiguration: {
@@ -69,7 +86,6 @@ const ProductModal = ({ product }: { product: Product }) => {
 
   const handleRadioChange = (key: string, data: string) => {
     //
-    console.log("key:", key, "data:", data);
 
     setChosenConfig((prev) => {
       return {
@@ -140,7 +156,7 @@ const ProductModal = ({ product }: { product: Product }) => {
             />
 
             <div className="flex items-center justify-between mt-12">
-              <span className="font-bold">Rs. 400</span>
+              <span className="font-bold">Rs. {totalPrice} </span>
               <Button onClick={() => handleAddToCart(product)}>
                 <ShoppingCart size={20} />
                 <span className="ml-2">Add to cart</span>
